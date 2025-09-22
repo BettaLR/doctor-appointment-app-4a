@@ -1,11 +1,10 @@
 # Configuración del Proyecto
 
-Este documento resume las configuraciones realizadas para actualizar el proyecto en un entorno Windows, incluyendo la configuración de la base de datos MySQL, el idioma en español, la zona horaria y la funcionalidad de foto de perfil.
+Aqui pondre las configuraciones realizadas al proyecto.
 
 ## 1. Configuración de la Base de Datos MySQL en Windows
 - Se utilizó XAMPP para levantar los servicios de Apache y MySQL.
 - Se accedió a PHPMyAdmin desde el panel de control de XAMPP para crear la base de datos llamada `appointment_db` con conjunto de caracteres UTF8MB4 para soportar acentos y caracteres especiales.
-- Se creó un usuario llamado `laravel` con contraseña `laravel123` y se le otorgaron todos los privilegios sobre la base de datos.
 - En el archivo `.env` del proyecto se configuraron las variables para conectar con MySQL:
   DB_CONNECTION=mysql DB_HOST=127.0.0.1 DB_PORT=3306 DB_DATABASE=appointment_db DB_USERNAME=laravel DB_PASSWORD=laravel123
 - Se ejecutó el comando `php artisan migrate` para crear las tablas necesarias en la base de datos.
