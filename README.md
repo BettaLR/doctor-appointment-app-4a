@@ -31,3 +31,50 @@ En el archivo .env se cambió la configuración del sistema de archivos para que
 
 FILESYSTEM_DISK=public
 Se verificó que al registrar o editar un usuario, apareciera la opción para subir una foto de perfil, y que esta se guardara correctamente en la carpeta public/storage.
+
+## 5. Funcionalidades Recientes Implementadas
+
+### 5.1 Instalación y Configuración de Livewire
+- Se instaló Livewire para crear componentes interactivos:
+  composer require livewire/livewire
+- Se publicaron los archivos de configuración de Livewire
+- Se agregaron las directivas de Livewire en el layout principal
+
+### 5.2 Componentes de Gestión de Perfil
+Se crearon todos los componentes Livewire faltantes para la gestión completa del perfil de usuario:
+
+- **UpdateProfileInformationForm**: Permite actualizar nombre y email del usuario
+- **UpdatePasswordForm**: Permite cambiar la contraseña con validación
+- **TwoFactorAuthenticationForm**: Gestiona la autenticación de dos factores
+- **LogoutOtherBrowserSessionsForm**: Permite cerrar sesiones en otros navegadores
+- **DeleteUserForm**: Permite eliminar la cuenta de usuario
+
+### 5.3 Rutas y Navegación
+- Se agregó la ruta `/profile` para acceder a la página de perfil
+- Se configuró la navegación del admin panel con rutas funcionales
+- Se implementó el sistema de rutas anidadas para el panel administrativo
+
+### 5.4 Panel de Administración
+- Se creó un dashboard administrativo funcional en `/admin`
+- Se configuró el layout administrativo con sidebar y navegación
+- Se implementó el sistema de navegación con estados activos
+
+### 5.5 Personalización Visual
+- Se cambió el título del panel de "Admin Panel" a "HealthCare"
+- Se configuró el color del título a blanco para mejor contraste
+- Se corrigió la ruta de la imagen del logo para usar la imagen correcta
+- Se limpió el sidebar para mostrar únicamente la opción "Dashboard"
+
+### 5.6 Corrección de Errores
+- Se solucionaron todos los componentes Livewire faltantes que causaban errores 404
+- Se corrigieron las rutas rotas en la navegación
+- Se implementó la funcionalidad completa del sistema de perfiles
+- Se verificó que todas las páginas carguen sin errores
+
+### 5.7 Tecnologías Utilizadas
+- **Laravel Jetstream**: Para autenticación y gestión de usuarios
+- **Laravel Fortify**: Para funcionalidades de seguridad
+- **Livewire**: Para componentes interactivos del frontend
+- **Tailwind CSS**: Para estilos y diseño responsivo
+- **Font Awesome**: Para iconografía
+- **Flowbite**: Para componentes UI adicionales
