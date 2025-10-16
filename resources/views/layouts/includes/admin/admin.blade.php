@@ -19,11 +19,11 @@
 
         {{-- WireUI --}}
         <wireui:scripts />
-
+        
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased bg-white">
+    <body class="font-sans antialiased bg-gray-50">
         
         @include('layouts.includes.admin.navigation')
 
