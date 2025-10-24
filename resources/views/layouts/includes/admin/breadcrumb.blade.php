@@ -11,7 +11,7 @@
 
                     {{-- Revisar si existe una llave llamada 'href' --}}
                     @isset($item['href'])
-                        <a href="{{ $item['href'] }}" class="text-blue-600 hover:text-blue-800 hover:underline">
+                        <a href="{{ $item['href'] }}" class="text-black hover:text-gray-800 hover:underline">
                             {{ $item['name'] }}
                         </a>
 
