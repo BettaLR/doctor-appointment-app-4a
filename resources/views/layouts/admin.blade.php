@@ -1,7 +1,7 @@
 @props([
     'title' => config('app.name', 'Laravel'),
     'breadcrumbs' => [],
-    ])
+])
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

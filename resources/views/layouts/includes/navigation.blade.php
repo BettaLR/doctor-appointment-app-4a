@@ -9,7 +9,7 @@
                     </svg>
                 </button>
                 <a href="/" class="flex ms-2 md:me-24">
-                <img src="{{ asset('images/istockphoto-1298213439-612x612.jpg') }}" class="h-8 me-3" alt="App Logo" />
+                <img src="{{ asset('images/Fortnite_F_lettermark_logo.png') }}" class="h-8 me-3" alt="App Logo" />
                 <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-gray-900">Healthify</span>
                 </a>
             </div>

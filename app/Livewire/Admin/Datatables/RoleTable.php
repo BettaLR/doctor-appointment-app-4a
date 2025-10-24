@@ -16,7 +16,6 @@ class RoleTable extends DataTableComponent
             ->setTableRowUrl(function($row) {
                 return route('admin.roles.edit', $row);
             })
-            ->setTableRowUrlTarget('_self')
             ->setTableAttributes(['class' => 'table table-striped table-black-borders table-hover-gray']);
     }
 

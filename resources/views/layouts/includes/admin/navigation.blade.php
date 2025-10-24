@@ -9,8 +9,8 @@
                     </svg>
                 </button>
                 <a href="/" class="flex ms-2 md:me-24">
-                <img src="{{ asset('images/istockphoto-1298213439-612x612.jpg') }}" class="h-8 me-3" alt="Fortnite Logo" />
-                <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-black">Fort health</span>
+                <img src="{{ asset('images/Fortnite_F_lettermark_logo.png') }}" class="h-8 me-3" alt="Medical App Logo" />
+                <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-black">Fort Health</span>
                 </a>
             </div>
             <div class="flex items-center">
