@@ -18,20 +18,24 @@ class RoleTable extends DataTableComponent
             })
             ->setTableAttributes(['class' => 'table table-striped table-black-borders table-hover-gray']);
     }
-
     public function columns(): array
 {
     return [
-        Column::make("Id", "id")
-            ->sortable(),
-        Column::make("Nombre", "name")
-            ->sortable()
-            ->searchable(),
-        Column::make("Fecha", "created_at")
-            ->sortable()
-            ->format(function($value) {
-                return $value->format('d/m/Y');
-            }),
-    ];
-}
+            Column::make("Id", "id")
+                ->sortable(),
+            Column::make("Nombre", "name")
+                ->sortable()
+                ->searchable(),
+            Column::make("Fecha", "created_at")
+                ->sortable()
+                ->format(function($value) {
+                    return $value->format('d/m/Y');
+                }),
+            Column::make("Acciones")
+                ->label(function($row){
+                    return view('admin.roles.actions',
+                ['role' => $row]);
+                })
+        ];
+    }
 }

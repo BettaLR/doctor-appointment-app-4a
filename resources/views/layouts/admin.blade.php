@@ -35,8 +35,13 @@
         <div class="p-4 sm:ml-64">
             <!-- Margin top 14px -->
             <div class="mt-14 flex items-center justify-between w-full" ></div>
-            <div class="container mx-auto">
-                @include('layouts.includes.admin.breadcrumb')
+            <div class="container mx-auto flex items-center justify-between">
+                <div>
+                    @include('layouts.includes.admin.breadcrumb')
+                </div>
+                <div>
+                    @yield('action')
+                </div>
             </div>
             {{ $slot }}
         </div>

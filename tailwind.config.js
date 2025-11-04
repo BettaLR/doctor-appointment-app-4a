@@ -8,8 +8,6 @@ import flowbite from "flowbite/plugin";
 
 import wireui from "./vendor/wireui/wireui/tailwind.config.js";
 
-
-
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -26,8 +24,6 @@ content: [
 
 "./resources/views/**/*.blade.php",
 
-
-
 "./vendor/wireui/wireui/src/*.php",
 
 "./vendor/wireui/wireui/ts/**/*.ts",
@@ -36,11 +32,7 @@ content: [
 
 "./vendor/wireui/wireui/src/Components/**/*.php",
 
-
-
 "./vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php",
-
-
 
 "./node_modules/flowbite/**/*.js",
 
@@ -63,14 +55,3 @@ sans: ["Figtree", ...defaultTheme.fontFamily.sans],
 plugins: [forms, typography, flowbite],
 
 };
-
-
-
-
-
-
-
-
-
-
-
