@@ -17,6 +17,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://kit.fontawesome.com/e9e74fca35.js" crossorigin="anonymous"></script>
 
+        <!-- Fontawesome -->
+        <script src="https://kit.fontawesome.com/9edd5944c5.js" crossorigin="anonymous"></script>
+
+        {{-- Sweet Alert 2 --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         {{-- WireUI --}}
         <wireui:scripts />
         

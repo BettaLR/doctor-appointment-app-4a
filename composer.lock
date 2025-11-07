@@ -113,7 +113,7 @@
             },
             "time": "2024-10-01T13:55:55+00:00"
         },
-         {
+        {
             "name": "blade-ui-kit/blade-heroicons",
             "version": "2.6.0",
             "source": {
@@ -5821,7 +5821,7 @@
             },
             "time": "2025-09-04T20:59:21+00:00"
         },
-         {
+        {
             "name": "rappasoft/laravel-livewire-tables",
             "version": "v3.7.3",
             "source": {
@@ -8813,7 +8813,7 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
-             },
+        },
         {
             "name": "wireui/heroicons",
             "version": "v2.9.0",
@@ -8942,7 +8942,6 @@
                 "source": "https://github.com/wireui/wireui/tree/v2.4.3"
             },
             "time": "2025-04-29T22:34:44+00:00"
-        
         }
     ],
     "packages-dev": [
