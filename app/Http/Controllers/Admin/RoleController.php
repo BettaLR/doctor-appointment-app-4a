@@ -57,43 +57,90 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
-        $role = Role::findOrFail($id);
-        return view('admin.roles.show', compact('role'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        $role = Role::findOrFail($id);
+        //Restringir la accion para los primeros 4 roles fijos
+        if ($role->id <=6) {
+            //Variable de un solo uso
+            session()->flash('swal',
+            [
+                'icon' => 'error',
+                'tittle' => 'Acción no permitida',
+                'text' => 'No se puede eliminar un rol fijo del sistema',
+            ]);
+            return redirect()->route('admin.roles.index');
+        }
         return view('admin.roles.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        $role = Role::findOrFail($id);
-
         $request->validate([
             'name' => 'required|string|unique:roles,name,' . $role->id,
         ]);
 
+        //Si el campo no cambia, no se actualiza
+        if ($role->name === $request->name) {
+            session()->flash('swal',
+            [
+                'icon' => 'info',
+                'tittle' => 'Sin cambios',
+                'text' => 'No se detectaron modificaciones',
+            ]);
+        }
+
         $role->update(['name' => $request->name]);
 
-        return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully.');
+         //Variable de un solo uso para alerta
+        session()->flash('swal', 
+        [
+            'icon' => 'success',
+            'tittle' => 'Rol actualizado correctamente',
+            'text' => 'El rol ha sido actualizado exitosamente',
+        ]);
+
+        //Rediccenionara a la tabla principal
+        return redirect()->route('admin.roles.index', $role);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        $role = Role::findOrFail($id);
+        //Restringir la accion para los primeros 4 roles fijos
+        if($role->id <=6) {
+            //Variable de un solo uso
+            session()->flash('swal',
+            [
+                'icon' => 'error',
+                'tittle' => 'Acción no permitida',
+                'text' => 'No se puede eliminar un rol fijo del sistema',
+            ]);
+            return redirect()->route('admin.roles.index');
+        }
+
+        //Borrar el elemento
         $role->delete();
 
-        return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully.');
+        //Alerta
+        session()->flash('swal', 
+        [
+            'icon' => 'success',
+            'tittle' => 'Rol eliminado correctamente',
+            'text' => 'El rol ha sido eliminado exitosamente',
+        ]);
+
+        //Redireccionar a la tabla principal
+        return redirect()->route('admin.roles.index');
     }
 }
