@@ -16,6 +16,12 @@
             'href' => route('admin.roles.index'),
             'active' => request()->routeIs('admin.roles.*'),
         ],
+        [
+            'name' => 'Usuarios',
+            'icon' => 'fa-solid fa-users',
+            'href' => route('admin.users.index'),
+            'active' => request()->routeIs('admin.users.*'),
+        ],
     ];
 @endphp
 
@@ -31,7 +37,7 @@
                         <div class="px-2 py-2 text-xs font-semibold text-gray-500 uppercase">
                             {{ $link['header'] }}
                         </div>
-                       
+
                     @else
                         {{-- Revisa si existe un submenú --}}
                         @isset($link['submenu'])
