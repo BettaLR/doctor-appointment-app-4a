@@ -8,7 +8,7 @@
         'href' => route('admin.dashboard'),
     ],
     [
-        'name' => 'Verstappen',
+        'name' => 'Ejemplo',
     ],
 ]">
     Hola desde Admin

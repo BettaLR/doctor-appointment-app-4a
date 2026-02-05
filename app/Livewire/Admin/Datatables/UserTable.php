@@ -12,15 +12,11 @@ class UserTable extends DataTableComponent
 
     public function configure(): void
     {
-        $this->setPrimaryKey('id')
-            ->setTableRowUrl(function($row) {
-                return route('admin.users.edit', $row);
-            })
-            ->setTableAttributes(['class' => 'table table-striped table-black-borders table-hover-gray']);
+        $this->setPrimaryKey('id');
     }
     public function columns(): array
-{
-    return [
+    {
+        return [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Nombre", "name")
@@ -29,19 +25,18 @@ class UserTable extends DataTableComponent
             Column::make("Email", "email")
                 ->sortable()
                 ->searchable(),
-            Column::make("Rol")
-                ->label(function($row){
-                    return $row->roles->first()?->name ?? 'Sin rol';
-                }),
-            Column::make("Fecha", "created_at")
+            Column::make("No. Identificación", "id_number")
                 ->sortable()
-                ->format(function($value) {
-                    return $value->format('d/m/Y');
-                }),
+                ->searchable(),
+            Column::make("Teléfono", "phone")
+                ->sortable()
+                ->searchable(),
             Column::make("Acciones")
-                ->label(function($row){
-                    return view('admin.users.actions',
-                ['user' => $row]);
+                ->label(function ($row) {
+                    return view(
+                        'admin.users.actions',
+                        ['user' => $row]
+                    );
                 })
         ];
     }

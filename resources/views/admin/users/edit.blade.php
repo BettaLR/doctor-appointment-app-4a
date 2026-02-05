@@ -33,6 +33,28 @@
 
           <x-input
 
+            label="No. Identificación" name="id_number" placeholder="Número de identificación" value="{{ old('id_number', $user->id_number) }}">
+
+          </x-input>
+
+          <x-input
+
+            label="Teléfono" name="phone" placeholder="Número de teléfono (opcional)" value="{{ old('phone', $user->phone) }}">
+
+          </x-input>
+
+          <div class="mb-4">
+            <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dirección (opcional)</label>
+            <textarea name="address" id="address" rows="3" 
+              class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+              placeholder="Dirección del usuario">{{ old('address', $user->address) }}</textarea>
+            @error('address')
+              <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+          </div>
+
+          <x-input
+
             label="Contraseña (opcional)" name="password" type="password" placeholder="Dejar vacío para mantener la actual">
 
           </x-input>

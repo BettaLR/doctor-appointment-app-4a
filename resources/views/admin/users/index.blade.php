@@ -14,4 +14,6 @@
   </x-wire-button>
 @endsection
 
+  @livewire('admin.datatables.user-table')
+
 </x-admin-layout>

@@ -24,7 +24,7 @@
         </ol>
         <!-- El ultimo item aparece resaltado -->
         @if (count($breadcrumbs) > 1)
-            <h1 class="text-2xl font-bold text-gray-900 mt-2">
+            <h1 class="text-2xl font-bold text-gray-900 mt-2 text-left">
                 {{ end($breadcrumbs)['name'] }}
             </h1>
 

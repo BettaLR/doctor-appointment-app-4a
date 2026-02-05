@@ -12,15 +12,11 @@ class RoleTable extends DataTableComponent
 
     public function configure(): void
     {
-        $this->setPrimaryKey('id')
-            ->setTableRowUrl(function($row) {
-                return route('admin.roles.edit', $row);
-            })
-            ->setTableAttributes(['class' => 'table table-striped table-black-borders table-hover-gray']);
+        $this->setPrimaryKey('id');
     }
     public function columns(): array
-{
-    return [
+    {
+        return [
             Column::make("Id", "id")
                 ->sortable(),
             Column::make("Nombre", "name")
@@ -28,13 +24,15 @@ class RoleTable extends DataTableComponent
                 ->searchable(),
             Column::make("Fecha", "created_at")
                 ->sortable()
-                ->format(function($value) {
+                ->format(function ($value) {
                     return $value->format('d/m/Y');
                 }),
             Column::make("Acciones")
-                ->label(function($row){
-                    return view('admin.roles.actions',
-                ['role' => $row]);
+                ->label(function ($row) {
+                    return view(
+                        'admin.roles.actions',
+                        ['role' => $row]
+                    );
                 })
         ];
     }

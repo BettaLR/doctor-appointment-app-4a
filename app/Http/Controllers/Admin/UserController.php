@@ -37,12 +37,24 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|exists:roles,id',
+            'id_number' => 'required|string|max:50|unique:users|regex:/^[A-Za-z0-9]+$/',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:500',
+        ], [
+            'id_number.required' => 'El número de identificación es obligatorio.',
+            'id_number.unique' => 'Este número de identificación ya está registrado.',
+            'id_number.regex' => 'El número de identificación solo puede contener letras y números.',
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'id_number' => $request->id_number,
+            'phone' => $request->phone,
+            'address' => $request->address,
         ]);
 
         $role = Role::find($request->role);
@@ -53,6 +65,12 @@ class UserController extends Controller
             'title' => 'Usuario creado correctamente',
             'text' => 'El usuario se ha creado exitosamente',
         ]);
+
+        //Si el usuario creado es un paciente, envia al modulo pacientes
+        if ($user::role('Paciente')) {
+            $patient = $user->patient()->create([]);
+            return redirect()->route('admin.patients.edit', $patient);
+        }
 
         return redirect()->route('admin.users.index');
     }
@@ -84,11 +102,23 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'role' => 'required|exists:roles,id',
+            'id_number' => 'required|string|max:50|unique:users,id_number,' . $user->id . '|regex:/^[A-Za-z0-9]+$/',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:500',
+        ], [
+            'id_number.required' => 'El número de identificación es obligatorio.',
+            'id_number.unique' => 'Este número de identificación ya está registrado.',
+            'id_number.regex' => 'El número de identificación solo puede contener letras y números.',
+            'email.unique' => 'Este correo electrónico ya está registrado.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
         ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'id_number' => $request->id_number,
+            'phone' => $request->phone,
+            'address' => $request->address,
         ]);
 
         if ($request->filled('password')) {
