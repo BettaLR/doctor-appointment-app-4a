@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Patient;
+use App\Models\BloodType;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -21,7 +22,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('admin.patients.create'); 
+        return view('admin.patients.create');
     }
 
     /**
@@ -45,7 +46,10 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        return view('admin.patients.edit', compact('patient'));
+        $patient->load('user', 'bloodType');
+        $blood_types = BloodType::all();
+
+        return view('admin.patients.edit', compact('patient', 'blood_types'));
     }
 
     /**
@@ -53,7 +57,34 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        // Sanitizar teléfono: eliminar paréntesis, guiones y espacios
+        if ($request->emergency_contact_phone) {
+            $request->merge([
+                'emergency_contact_phone' => preg_replace('/[\(\)\-\s]/', '', $request->emergency_contact_phone),
+            ]);
+        }
+
+        $validated = $request->validate([
+            'blood_type_id' => 'nullable|exists:blood_types,id',
+            'allergies' => 'nullable|string|max:255',
+            'chronic_conditions' => 'nullable|string|max:255',
+            'surgical_history' => 'nullable|string|max:255',
+            'family_history' => 'nullable|string|max:255',
+            'observations' => 'nullable|string|max:255',
+            'emergency_contact_name' => 'nullable|string|max:255',
+            'emergency_contact_phone' => 'nullable|digits:10',
+            'emergency_contact_relationship' => 'nullable|string|max:255',
+        ]);
+
+        $patient->update($validated);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Paciente actualizado',
+            'text' => 'Los datos del paciente se han actualizado correctamente.',
+        ]);
+
+        return redirect()->route('admin.patients.edit', $patient);
     }
 
     /**

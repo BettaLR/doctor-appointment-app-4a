@@ -17,7 +17,8 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Manuel Cano',
             'email' => 'alexcanolara818@gmail.com',
-            'email_verified_at' => now(), // Verificar el email para permitir login
+            // Verificar el email para permitir login
+            'email_verified_at' => now(),
             'password' => Hash::make('14112003'),
             'id_number' => '123456789',
             'phone' => '123456789',
