@@ -34,21 +34,23 @@ class RoleController extends Controller
         $request->validate([
             'name' => 'required|unique:roles,name',
         ]);
-        
+
         //Si pasa la validacion, crear el rol
         Role::create(['name' => $request->name]);
 
         //Variable de un solo uso para alerta
-        session()->flash('swal', 
-        [
-            'icon' => 'Success',
-            'tittle' => 'Rol creado correctamente',
-            'text' => 'El rol se ha creado exitosamente',
-        ]);
+        session()->flash(
+            'swal',
+            [
+                'icon' => 'success',
+                'title' => 'Rol creado correctamente',
+                'text' => 'El rol se ha creado exitosamente',
+            ]
+        );
 
         //Rediccenionara a la tabla principal
         return redirect()->route('admin.roles.index')
-        ->with('Success', 'Role created successfully.');
+            ->with('Success', 'Role created successfully.');
 
     }
 
@@ -66,14 +68,16 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         //Restringir la accion para los primeros 4 roles fijos
-        if ($role->id <=6) {
+        if ($role->id <= 6) {
             //Variable de un solo uso
-            session()->flash('swal',
-            [
-                'icon' => 'error',
-                'tittle' => 'Acción no permitida',
-                'text' => 'No se puede eliminar un rol fijo del sistema',
-            ]);
+            session()->flash(
+                'swal',
+                [
+                    'icon' => 'error',
+                    'title' => 'Acción no permitida',
+                    'text' => 'No se puede eliminar un rol fijo del sistema',
+                ]
+            );
             return redirect()->route('admin.roles.index');
         }
         return view('admin.roles.edit', compact('role'));
@@ -90,23 +94,28 @@ class RoleController extends Controller
 
         //Si el campo no cambia, no se actualiza
         if ($role->name === $request->name) {
-            session()->flash('swal',
-            [
-                'icon' => 'info',
-                'tittle' => 'Sin cambios',
-                'text' => 'No se detectaron modificaciones',
-            ]);
+            session()->flash(
+                'swal',
+                [
+                    'icon' => 'info',
+                    'title' => 'Sin cambios',
+                    'text' => 'No se detectaron modificaciones',
+                ]
+            );
+            return redirect()->route('admin.roles.index');
         }
 
         $role->update(['name' => $request->name]);
 
-         //Variable de un solo uso para alerta
-        session()->flash('swal', 
-        [
-            'icon' => 'success',
-            'tittle' => 'Rol actualizado correctamente',
-            'text' => 'El rol ha sido actualizado exitosamente',
-        ]);
+        //Variable de un solo uso para alerta
+        session()->flash(
+            'swal',
+            [
+                'icon' => 'success',
+                'title' => 'Rol actualizado correctamente',
+                'text' => 'El rol ha sido actualizado exitosamente',
+            ]
+        );
 
         //Rediccenionara a la tabla principal
         return redirect()->route('admin.roles.index', $role);
@@ -118,14 +127,16 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //Restringir la accion para los primeros 4 roles fijos
-        if($role->id <=6) {
+        if ($role->id <= 6) {
             //Variable de un solo uso
-            session()->flash('swal',
-            [
-                'icon' => 'error',
-                'tittle' => 'Acción no permitida',
-                'text' => 'No se puede eliminar un rol fijo del sistema',
-            ]);
+            session()->flash(
+                'swal',
+                [
+                    'icon' => 'error',
+                    'title' => 'Acción no permitida',
+                    'text' => 'No se puede eliminar un rol fijo del sistema',
+                ]
+            );
             return redirect()->route('admin.roles.index');
         }
 
@@ -133,12 +144,14 @@ class RoleController extends Controller
         $role->delete();
 
         //Alerta
-        session()->flash('swal', 
-        [
-            'icon' => 'success',
-            'tittle' => 'Rol eliminado correctamente',
-            'text' => 'El rol ha sido eliminado exitosamente',
-        ]);
+        session()->flash(
+            'swal',
+            [
+                'icon' => 'success',
+                'title' => 'Rol eliminado correctamente',
+                'text' => 'El rol ha sido eliminado exitosamente',
+            ]
+        );
 
         //Redireccionar a la tabla principal
         return redirect()->route('admin.roles.index');

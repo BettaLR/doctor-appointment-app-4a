@@ -65,6 +65,13 @@ class PatientController extends Controller
         }
 
         $validated = $request->validate([
+            // Datos personales (usuario)
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255|unique:users,email,' . $patient->user->id,
+            'id_number' => 'nullable|string|max:255|unique:users,id_number,' . $patient->user->id,
+            'phone' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            // Datos del paciente
             'blood_type_id' => 'nullable|exists:blood_types,id',
             'allergies' => 'nullable|string|max:255',
             'chronic_conditions' => 'nullable|string|max:255',
@@ -76,7 +83,12 @@ class PatientController extends Controller
             'emergency_contact_relationship' => 'nullable|string|max:255',
         ]);
 
-        $patient->update($validated);
+        // Actualizar datos del usuario
+        $userFields = ['name', 'email', 'id_number', 'phone', 'address'];
+        $patient->user->update(collect($validated)->only($userFields)->toArray());
+
+        // Actualizar datos del paciente
+        $patient->update(collect($validated)->except($userFields)->toArray());
 
         session()->flash('swal', [
             'icon' => 'success',

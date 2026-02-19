@@ -62,7 +62,7 @@
 
         <script>
             //Buscar todos los elementos de una clase especifica
-            forms = document.querySelectorAll('.delete-form');
+            const forms = document.querySelectorAll('.delete-form');
             forms.forEach(form => {
                 //Se pone al pendiente de cualquier accion submit
                 form.addEventListener('submit', function(e){

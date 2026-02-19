@@ -34,7 +34,7 @@
                     <i class="fa-solid fa-arrow-left mr-1"></i> Volver
                 </x-wire-button>
 
-                <x-wire-button type="submit" form="patient-form" blue>
+                <x-wire-button type="submit" form="patient-form">
                     <i class="fa-solid fa-floppy-disk mr-1"></i> Guardar
                 </x-wire-button>
             </div>
@@ -99,30 +99,52 @@
             @csrf
             @method('PUT')
 
-            {{-- ===== TAB 1: Datos Personales (solo lectura) ===== --}}
+            {{-- ===== TAB 1: Datos Personales (editable) ===== --}}
             <div x-show="tab === 'personal'" x-transition>
                 <x-wire-card>
                     <h3 class="text-lg font-semibold mb-4 text-gray-700">Datos Personales</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <p class="text-sm text-gray-500">Nombre</p>
-                            <p class="font-medium text-gray-800">{{ $patient->user->name }}</p>
+                            <x-input
+                                label="Nombre"
+                                name="name"
+                                placeholder="Nombre del paciente"
+                                value="{{ old('name', $patient->user->name) }}"
+                            />
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Correo electrónico</p>
-                            <p class="font-medium text-gray-800">{{ $patient->user->email }}</p>
+                            <x-input
+                                label="Correo electrónico"
+                                name="email"
+                                type="email"
+                                placeholder="correo@ejemplo.com"
+                                value="{{ old('email', $patient->user->email) }}"
+                            />
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">No. Identificación</p>
-                            <p class="font-medium text-gray-800">{{ $patient->user->id_number ?? '—' }}</p>
+                            <x-input
+                                label="No. Identificación"
+                                name="id_number"
+                                placeholder="EJ. ABC123"
+                                value="{{ old('id_number', $patient->user->id_number) }}"
+                            />
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Teléfono</p>
-                            <p class="font-medium text-gray-800">{{ $patient->user->phone ?? '—' }}</p>
+                            <x-input
+                                label="Teléfono"
+                                name="phone"
+                                type="tel"
+                                placeholder="EJ. 1234567890"
+                                value="{{ old('phone', $patient->user->phone) }}"
+                            />
                         </div>
                         <div class="md:col-span-2">
-                            <p class="text-sm text-gray-500">Dirección</p>
-                            <p class="font-medium text-gray-800">{{ $patient->user->address ?? '—' }}</p>
+                            <x-input
+                                label="Dirección"
+                                name="address"
+                                placeholder="Dirección del paciente"
+                                value="{{ old('address', $patient->user->address) }}"
+                            />
                         </div>
                     </div>
                 </x-wire-card>
