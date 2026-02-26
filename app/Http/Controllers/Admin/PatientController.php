@@ -49,7 +49,32 @@ class PatientController extends Controller
         $patient->load('user', 'bloodType');
         $blood_types = BloodType::all();
 
-        return view('admin.patients.edit', compact('patient', 'blood_types'));
+        // Calcular la pestaña inicial según errores de validación
+        $initialTab = 'personal';
+
+        $errors = session('errors');
+        if ($errors) {
+            $tabMap = [
+                'allergies' => 'antecedentes',
+                'chronic_conditions' => 'antecedentes',
+                'surgical_history' => 'antecedentes',
+                'family_history' => 'antecedentes',
+                'blood_type_id' => 'general',
+                'observations' => 'general',
+                'emergency_contact_name' => 'emergencia',
+                'emergency_contact_phone' => 'emergencia',
+                'emergency_contact_relationship' => 'emergencia',
+            ];
+
+            foreach ($errors->keys() as $field) {
+                if (isset($tabMap[$field])) {
+                    $initialTab = $tabMap[$field];
+                    break;
+                }
+            }
+        }
+
+        return view('admin.patients.edit', compact('patient', 'blood_types', 'initialTab'));
     }
 
     /**
