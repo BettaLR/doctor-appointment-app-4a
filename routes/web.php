@@ -22,4 +22,4 @@ Route::middleware([
     })->name('profile.show');
 });
 
-// Rutas de convenios de seguro
+// Insurance agreement routes
