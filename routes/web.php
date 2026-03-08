@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::redirect('/', '/admin' );
+Route::redirect('/', '/admin');
 //Route::get('/', function () {
-  //  return view('welcome');
+//  return view('welcome');
 //});
 
 Route::middleware([
@@ -21,3 +21,5 @@ Route::middleware([
         return view('profile.show');
     })->name('profile.show');
 });
+
+// Insurance agreement routes

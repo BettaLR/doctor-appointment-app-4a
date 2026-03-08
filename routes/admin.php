@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\InsuranceController;
 
 Route::get('/', function () {
     return view('admin.dashboard');
@@ -21,3 +22,7 @@ Route::resource('patients', PatientController::class);
 
 //Gestion de Doctores
 Route::resource('doctors', DoctorController::class);
+
+//Gestion de Convenios de Seguro
+Route::resource('insurances', InsuranceController::class);
+
