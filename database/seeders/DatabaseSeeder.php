@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             BloodTypeSeeder::class,
             SpecialitySeeder::class,
             UserSeeder::class,
+            InsuranceSeeder::class,
         ]);
     }
 }

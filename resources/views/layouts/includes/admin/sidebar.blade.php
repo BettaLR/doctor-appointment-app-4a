@@ -34,6 +34,12 @@
             'href' => route('admin.doctors.index'),
             'active' => request()->routeIs('admin.doctors.*'),
         ],
+        [
+            'name' => 'Convenios de Seguro',
+            'icon' => 'fa-solid fa-file-shield',
+            'href' => route('admin.insurances.index'),
+            'active' => request()->routeIs('admin.insurances.*'),
+        ],
     ];
 @endphp
 
