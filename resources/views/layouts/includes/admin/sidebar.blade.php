@@ -40,6 +40,12 @@
             'href' => route('admin.insurances.index'),
             'active' => request()->routeIs('admin.insurances.*'),
         ],
+        [
+            'name' => 'Importar Pacientes',
+            'icon' => 'fa-solid fa-file-import',
+            'href' => route('admin.patient-imports.index'),
+            'active' => request()->routeIs('admin.patient-imports.*'),
+        ],
     ];
 @endphp
 
