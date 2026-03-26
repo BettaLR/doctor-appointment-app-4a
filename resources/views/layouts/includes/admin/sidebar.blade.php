@@ -40,6 +40,12 @@
             'href' => route('admin.insurances.index'),
             'active' => request()->routeIs('admin.insurances.*'),
         ],
+        [
+            'name' => 'Citas Médicas',
+            'icon' => 'fa-solid fa-calendar-check',
+            'href' => route('admin.appointments.index'),
+            'active' => request()->routeIs('admin.appointments.*'),
+        ],
     ];
 @endphp
 

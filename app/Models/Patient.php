@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Appointment;
 
 class Patient extends Model
 {
@@ -29,5 +30,11 @@ class Patient extends Model
     public function bloodType()
     {
         return $this->belongsTo(BloodType::class);
+    }
+
+    //Relación uno a muchos: un paciente tiene muchas citas
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 }
